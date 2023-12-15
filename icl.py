@@ -15,11 +15,13 @@ import pandas as pd
 import re
 from argparse import ArgumentParser
 import wandb
+from huggingface_hub import login as login_hf
+import os
 
 parser = ArgumentParser()
 parser.add_argument('--debug', action="store_true")
 parser.add_argument('--control', action="store_true")
-parser.add_argument('--model_path', default="/scratch/chaijy_root/chaijy2/hufy/.cache/huggingface/hub/LLaMA-2-hf", required=False)
+parser.add_argument('--model_path', default="meta-llama/Llama-2-7b-hf", required=False)
 parser.add_argument('--batch_size', type=int, default=8, required=False)
 parser.add_argument('--num_shots', type=int, default=2, choices=[1,2], required=False)
 args = parser.parse_args()
@@ -31,7 +33,13 @@ NUM_SHOTS = args.num_shots
 
 # Load LLaMA-2 with 4 bit quantization
 llama_path = args.model_path
-local_only = True
+local_only = args.model_path != "meta-llama/Llama-2-7b-hf"
+if not local_only:
+    login_hf()
+    _ = AutoModelForCausalLM.from_pretrained(llama_path, device_map="auto", load_in_8bit=True)
+    del _
+    llama_path = os.path.join(os.getenv('TRANSFORMERS_CACHE'), "LLaMA-2-hf")
+exit(0)
 llama_tokenizer = LlamaTokenizerFast.from_pretrained(
     llama_path,
     local_files_only=local_only,
