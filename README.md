@@ -2,7 +2,7 @@
 
 ## Notes
 
-Used [`LLaMA-2-hf`](https://huggingface.co/meta-llama/Llama-2-7b-hf) by [Meta](https://ai.meta.com/llama/) with the HuggingFace [`transformers`](https://huggingface.co/docs/transformers/index) Library. For optimization, HuggingFace [`accerelare`](https://huggingface.co/docs/accelerate/index) library was used to quantize the LLM. [`wandb`](https://wandb.ai/) is used for logging and monitoring performance. Used the [`SQuAD_v2`](https://huggingface.co/datasets/squad_v2) dataset with the HuggingFace [`datasets`](https://huggingface.co/docs/datasets/index) library
+We used [`LLaMA-2-hf`](https://huggingface.co/meta-llama/Llama-2-7b-hf) by [Meta](https://ai.meta.com/llama/) with the HuggingFace [`transformers`](https://huggingface.co/docs/transformers/index) Library. For optimization, we used HuggingFace [`accerelare`](https://huggingface.co/docs/accelerate/index) library to quantize the LLM. [`wandb`](https://wandb.ai/) is used for logging and monitoring performance. The [`SQuAD_v2`](https://huggingface.co/datasets/squad_v2) dataset is used with the HuggingFace [`datasets`](https://huggingface.co/docs/datasets/index) library for few-shot in-context learning and evaluation.
 
 For some early experiments, refer to `experiments.ipynb`, for experiments related to in-context learning with LLaMA-2, refer to `llama-icl.ipynb`, for in-context learning examples, refer to `icl_examples.json`, to replicate our result, run the script `icl.py` by following the steps below:
 
@@ -41,6 +41,10 @@ Debug mode:
 ```bash
 --debug
 ```
+
+## Results
+
+Our experimental results can be found in `\results`.
 
 # Initial Quiz Generation Notebook
 
