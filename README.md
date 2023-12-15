@@ -102,8 +102,6 @@ Ensure you have installed the required libraries mentioned in the "Requirements"
 If using a virtual environment, activate it before running commands.
 
 
-Certainly! Here's a modified version of step 2:
-
 2. Loading Custom Data (Optional):
 
 The script is pre-configured with a default dataset: CNN-DailyMail. However, you can replace it with your own data for fine-tuning on specific topics or domains.
